@@ -1,0 +1,27 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        //ARouter
+        classpath "com.alibaba:arouter-register:1.0.2"
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.1.2' apply false
+    id 'com.android.library' version '7.1.2' apply false
+}
+
+// 路由表自动加载插件
+apply plugin: 'com.alibaba.arouter'
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
