@@ -24,7 +24,7 @@ public class ChanelAdapter extends RecyclerView.Adapter<ChanelAdapter.ViewHolder
 
 	public ChanelAdapter(Context context, List<ChannelBean> list) {
 		this.list = list;
-		this.context  = context;
+		this.context = context;
 	}
 
 	@NonNull
@@ -36,17 +36,22 @@ public class ChanelAdapter extends RecyclerView.Adapter<ChanelAdapter.ViewHolder
 
 	@Override
 	public void onBindViewHolder(@NonNull ChanelAdapter.ViewHolder holder, int position) {
-		final int  _position = position;
+		final int _position = position;
 		ChannelBean current = this.list.get(_position);
 		String title = current.getTitle();
-		
+
 		holder.btn_view.setText(title);
 		holder.btn_view.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-
-
-				Log.d(TAG, "onClick: " +		view.isFocused() );
+				Log.d(TAG, "onClick: " + view.isFocused());
+			}
+		});
+		holder.item_view.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View view, int i, KeyEvent keyEvent) {
+				Log.d(TAG, "onKey: adapater" );
+				return false;
 			}
 		});
 
@@ -61,12 +66,13 @@ public class ChanelAdapter extends RecyclerView.Adapter<ChanelAdapter.ViewHolder
 	public class ViewHolder extends RecyclerView.ViewHolder {
 
 		Button btn_view;
+		View item_view;
 
 		public ViewHolder(@NonNull View itemView) {
 			super(itemView);
 
 			btn_view = itemView.findViewById(R.id.channel_item_button);
-
+			item_view = itemView;
 		}
 	}
 }

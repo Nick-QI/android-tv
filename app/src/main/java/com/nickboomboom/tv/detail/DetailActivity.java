@@ -1,39 +1,27 @@
 package com.nickboomboom.tv.detail;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
-import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
+
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.nickboomboom.tv.R;
-import com.nickboomboom.tv.utils.KeyHandler;
+import com.nickboomboom.tv.components.customPlayer.CustomPlayerView;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
-import com.shuyu.gsyvideoplayer.cache.CacheFactory;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
-import com.shuyu.gsyvideoplayer.player.PlayerFactory;
-import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import tv.danmaku.ijk.media.exo2.Exo2PlayerManager;
-import tv.danmaku.ijk.media.exo2.ExoPlayerCacheManager;
+
 
 public class DetailActivity extends Activity {
 	@BindView(R.id.activity_detail)
 	LinearLayout root;
-
 	@BindView(R.id.activity_detail_player)
 	CustomPlayerView detailPlayer;
 	String url = "http://39.134.115.163:8080/PLTV/88888910/224/3221225618/index.m3u8";
@@ -53,7 +41,6 @@ public class DetailActivity extends Activity {
 
 
 	public void init() {
-//		detailPlayer = findViewById(R.id.activity_detail_player);
 
 		GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
 		gsyVideoOption
@@ -77,34 +64,6 @@ public class DetailActivity extends Activity {
 				}).build(this.detailPlayer);
 
 		this.detailPlayer.startPlayLogic();
-		Log.d(TAG, "init: "+ this.root);
-		this.detailPlayer.setOnKeyListener(new View.OnKeyListener() {
-			@Override
-			public boolean onKey(View view, int i, KeyEvent keyEvent) {
-				Log.d(TAG, "onKey: 111111111111111111111111111111");
-				if (KeyHandler.isBottomDown(i, keyEvent)) {
-
-					return true;
-				} else if (KeyHandler.isTopDown(i, keyEvent)) {
-
-					return true;
-				} else if (KeyHandler.isLeftDown(i, keyEvent)) {
-
-
-					return true;
-				} else if (KeyHandler.isRightDown(i, keyEvent)) {
-
-
-					return true;
-				} else if (KeyHandler.isEnterDown(i, keyEvent)) {
-					Log.d(TAG, "onKey: ");
-					return true;
-				}
-
-				return false;
-			}
-		});
-
 	}
 
 
@@ -138,8 +97,6 @@ public class DetailActivity extends Activity {
 		if (isPlay) {
 			detailPlayer.getCurrentPlayer().release();
 		}
-//        if (orientationUtils != null)
-//            orientationUtils.releaseListener();
 	}
 
 

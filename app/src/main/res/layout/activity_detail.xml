@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nickboomboom.tv.detail.CustomPlayerView
+    <com.nickboomboom.tv.components.customPlayer.CustomPlayerView
         android:id="@+id/activity_detail_player"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingClass" />
+        tools:ignore="MissingClass"
+        android:focusable="true"
+        />
 
 
 </LinearLayout>
